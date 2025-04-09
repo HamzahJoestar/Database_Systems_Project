@@ -1,15 +1,17 @@
-  footer {
+footer{
     background-color: #EAA221;
     color: white;
     padding: 10px 0;
     text-align: left;
     padding-left: 20px;
-  }
-  .teammates-list {
+}
+
+.teammates-list{
     list-style-type: none;
     padding: 0;
     margin: 0;
-  }
-  .teammates-list li {
+}
+
+.teammates-list li{
     margin-bottom: 5px;
-  }
+}
