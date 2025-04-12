@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Selling toys themed around Marigolds" />
-    <title>Marigold Memories</title>
+    <meta name="description" content="Register for Marigold Memories" />
+    <title>Sign Up | Marigold Memories</title>
     <link href="style.css" rel="stylesheet" />
 </head>
 <body>
@@ -34,11 +34,22 @@
         </div>
     </header>
 
-    <!-- Main Content Section -->
+    <!-- Main Content -->
     <main class="home-page">
         <section class="content">
-            <h2>About the Project</h2>
-            <p>Selling toys themed around Marigolds</p>
+            <h2>Create Your Account</h2>
+            <form action="process_register.php" method="POST" class="form">
+                <label for="name">Full Name</label>
+                <input type="text" name="name" id="name" required />
+
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required />
+
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required />
+
+                <button type="submit">Sign Up</button>
+            </form>
         </section>
     </main>
 
