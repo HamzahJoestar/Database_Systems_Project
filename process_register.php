@@ -3,10 +3,10 @@
 session_start();
 
 // Database connection settings
-$host = "localhost";       // Change if needed
-$user = "root";            // Your DB username
-$password = "";            // Your DB password
-$dbname = "marigold_db";   // Your DB name
+$host = "localhost";                // Change if needed
+$user = "dasouqu1_ula";            // Your DB username
+$password = "lulululu12345";      // Your DB password
+$dbname = "dasouqu1_marigold";   // Your DB name
 
 // Connect to database
 $conn = new mysqli($host, $user, $password, $dbname);
