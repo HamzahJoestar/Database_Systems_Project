@@ -1,3 +1,15 @@
-[10-Apr-2025 17:34:33 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/dasouqu1/public_html/marigold_memories/process_register.php on line 12
-[10-Apr-2025 18:53:25 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/dasouqu1/public_html/marigold_memories/process_register.php on line 12
-[12-Apr-2025 00:16:52 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/dasouqu1/public_html/marigold_memories/process_register.php on line 12
+[12-Apr-2025 17:15:36 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/dasouqu1/public_html/marigold_memories/process_register.php on line 12
+[12-Apr-2025 17:16:52 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/dasouqu1/public_html/marigold_memories/process_register.php on line 12
+[12-Apr-2025 17:20:31 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/dasouqu1/public_html/marigold_memories/process_register.php on line 12
+[12-Apr-2025 17:24:23 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in /home/dasouqu1/public_html/marigold_memories/process_register.php:31
+Stack trace:
+#0 {main}
+  thrown in /home/dasouqu1/public_html/marigold_memories/process_register.php on line 31
+[12-Apr-2025 17:27:04 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in /home/dasouqu1/public_html/marigold_memories/process_register.php:31
+Stack trace:
+#0 {main}
+  thrown in /home/dasouqu1/public_html/marigold_memories/process_register.php on line 31
+[12-Apr-2025 17:27:09 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in /home/dasouqu1/public_html/marigold_memories/process_register.php:31
+Stack trace:
+#0 {main}
+  thrown in /home/dasouqu1/public_html/marigold_memories/process_register.php on line 31
