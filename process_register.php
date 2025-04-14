@@ -3,10 +3,10 @@
 session_start();
 
 // Database connection settings
-$servername = "localhost";    // localhost is correct for local PHP environments
-$username = "root";           // default username for XAMPP/WAMP/MAMP
-$password = "";               // default is empty password unless you changed it
-$dbname = "marigold";         // make sure you created this database in phpMyAdmin
+$servername = "localhost";       // usually localhost
+$username = "dasouqu1_ula";     // your cPanel DB username
+$password = "lulululu12345";     // your DB password
+$dbname = "dasouqu1_marigold";  // your actual database name
 
 // Connect to database
 $conn = new mysqli($host, $user, $password, $dbname);
