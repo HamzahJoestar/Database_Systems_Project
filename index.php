@@ -1,60 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Selling toys themed around Marigolds" />
-    <title>Marigold Memories</title>
-    <link href="style.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <title>Marigold Memories - Home</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header Section -->
-    <header>
-        <div class="container header-content">
-            <div class="title-section">
-                <h1>Marigold Memories</h1>
-                <p>What would you like to buy?</p>
+<header>
+    <div class="container header-content">
+        <div class="title-section">
+            <h1>🌼 Marigold Memories</h1>
+            <p>Your one-stop shop for flower-themed joy!</p>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.php"><button>Home</button></a>
+            <a href="shop.php"><button>Shop</button></a>
+            <a href="cart.php"><button>Cart</button></a>
+
+            <!-- Customer dropdown (Sign In + Sign Up) -->
+            <div class="dropdown">
+                <button class="dropbtn">Customer</button>
+                <div class="dropdown-content">
+                    <a href="login.php">Sign In</a>
+                    <a href="register.php">Sign Up</a>
+                </div>
             </div>
 
-            <nav class="nav-links">
-                <button onclick="location.href='shop.php'">Shop</button>
-                <button onclick="location.href='shop.php#new'">New Arrivals</button>
-                <button onclick="location.href='contact-us.php'">Contact Us</button>
-                <button onclick="location.href='about-us.php'">About</button>
-
-                <div class="dropdown">
-                    <button class="dropbtn">Account ▾</button>
-                    <div class="dropdown-content">
-                        <a href="login.php">Sign In</a>
-                        <a href="register.php">Sign Up</a>
-                    </div>
+            <!-- Admin dropdown (Sign In only) -->
+            <div class="dropdown">
+                <button class="dropbtn">Admin</button>
+                <div class="dropdown-content">
+                    <a href="admin_login.php">Sign In</a>
                 </div>
-            </nav>
+            </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- Main Content Section -->
-    <main class="home-page">
-        <section class="content">
-            <h2>About the Project</h2>
-            <p>Selling toys themed around Marigolds</p>
-        </section>
-    </main>
+<main class="home-page">
+    <div class="content">
+        <h2>Welcome to Marigold Memories!</h2>
+        <p>Explore our vibrant collection of marigold-themed products for families, teachers, and event planners.</p>
+    </div>
+</main>
 
-    <!-- Footer Section -->
-    <footer>
-        <div class="container footer-content">
-            <p class="footer-title">Teammates:</p>
-            <ul class="teammates-list">
-                <li>Ula Dasouqi</li>
-                <li>Kylie Maddaluna</li>
-                <li>Hamzah Muhammad</li>
-                <li>Amnah Javed</li>
-                <li>Daniel Shemesh</li>
-            </ul>
-        </div>
-    </footer>
+<footer>
+    <div class="footer-content">
+        <div class="footer-title">Meet the Team</div>
+        <ul class="teammates-list">
+            <li>Ula Dasouqi</li>
+            <li>Hamzah Muhammad</li>
+            <li>Kylie Maddaluna</li>
+            <li>Amnah Javed</li>
+            <li>Daniel Shemesh</li>
+        </ul>
+    </div>
+</footer>
 
 </body>
 </html>
