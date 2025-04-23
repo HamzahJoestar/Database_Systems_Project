@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +18,7 @@
     <header>
         <div class="container header-content">
             <div class="title-section">
-                <h1>Marigold Memories</h1>
+                <h1>🌼 Marigold Memories</h1>
                 <p>What would you like to buy?</p>
             </div>
 
@@ -38,18 +42,20 @@
     <!-- Login Section -->
     <div class="login-page" id="login-page">
         <section class="login-content">
-        <h2>Login</h2>
-        <form action="login-process.php" method="POST">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required />
-            
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required />
-            <button type="submit">Login</button>
+            <h2>Login</h2>
+            <form action="process_login.php" method="POST">
+                <label for="email">User Email:</label>
+                <input type="email" id="email" name="email" required />
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required />
+                
+                <button type="submit">Login</button>
             </form>
         </section>
     </div>
-  <!-- Footer Section -->
+
+    <!-- Footer Section -->
     <footer>
         <div class="container footer-content">
             <p class="footer-title">Teammates:</p>

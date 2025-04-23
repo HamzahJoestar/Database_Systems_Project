@@ -13,9 +13,9 @@ $success = "";
 // Database connection settings
 
 $host = "localhost";                // Change if needed
-$user = "dasouqu1_ula";            // Your DB username
-$password = "lulululu12345";      // Your DB password
-$dbname = "dasouqu1_marigold";   // Your DB name
+$user = "root";            // Your DB username
+$password = "";      // Your DB password
+$dbname = "muhammh3_marigold";   // Your DB name
 
 // Connect to database
 $conn = new mysqli($host, $user, $password, $dbname);
@@ -58,7 +58,7 @@ if (empty($firstName) || empty($lastName) || empty($email) || empty($phone) || e
         if ($stmt->execute()) {
             $_SESSION['user_id'] = $stmt->insert_id;
             $_SESSION['user_email'] = $email;
-            $success = "âœ… Account created successfully! Welcome, $firstName.";
+            $success = "✅  Account created successfully! Welcome, $firstName.";
         } else {
             $error = "Error: " . $stmt->error;
         }
@@ -104,7 +104,7 @@ $conn->close();
 <header>
     <div class="container header-content">
         <div class="title-section">
-            <h1>ðŸŒ¼ Marigold Memories</h1>
+            <h1>🌼 Marigold Memories</h1>
             <p>Your one-stop shop for flower-themed joy!</p>
         </div>
 

@@ -44,6 +44,7 @@
         <h2>Welcome to Marigold Memories!</h2>
         <p>Explore our vibrant collection of marigold-themed products for families, teachers, and event planners.</p>
     </div>
+    
 </main>
 
 <footer>
