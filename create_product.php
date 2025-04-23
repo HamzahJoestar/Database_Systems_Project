@@ -1,27 +1,33 @@
 <?php
 
 
-// Handle updating
+// Handle creating
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     session_start();
     include 'db_connect.php';
 
-    $success = "true";
-    
-    $id = trim($_POST["id"]);
 
+    
+    $sql_id = "SELECT MAX(ProductID) as ID FROM Products";
+    $result = $conn->query($sql_id);
+    
+    $id = $result->fetch_assoc()['ID']+1;
+
+    $success = "Added Product ".$id." Successfully!";
     $name = trim($_POST["name"]);
     $desc = trim($_POST["desc"]);
     $category = trim($_POST["category"]);
     $price = trim($_POST["price"]);
+    $admin_id = $_SESSION["admin_id"]?$_SESSION["admin_id"]:1;
     
     if (empty($name) || empty($desc) || empty($category) || empty($price) || empty($id)) {
-    $success = "Error: Please fill in all fields.";
+    $success = "Please fill in all fields.";
     }
     else{
-    $sql = "UPDATE Products SET Name = ? , Description = ? , Category = ? , Price = ? WHERE ProductID = ?";
+        
+    $sql = "INSERT INTO Products VALUES (?, ?, ?, ?, ?, 'default.png',?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssdi", $name, $desc, $category, $price, $id);
+    $stmt->bind_param("issdsi", $id, $name, $desc, $price, $category, $admin_id);
     $stmt->execute();
     
         
@@ -37,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Marigold Memories - Edit Product</title>
+    <title>Marigold Memories - Create Product</title>
     <link rel="stylesheet" href="style.css">
      <style>
         .form {
@@ -111,76 +117,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>Welcome to Marigold Memories!</h2>
         <p>Explore our vibrant collection of marigold-themed products for families, teachers, and event planners.</p>
 
-<?php
-
-        if(!isset($_GET['product'])){
-            echo "ERROR: NO PRODUCT SELECTED FOR EDITING";
-            exit();
-        }
-        
-        if(isset($_GET['success'])){
-            echo "<div id='editing-response'><p>";
-            if($_GET['success']=='true'){
-                echo("Editing Successful!");
-            }
-            else{
-                echo($_GET['success']);
-            }
-            echo "</p></div>\n";
-            echo "<script>
-  setTimeout(function() {
-    const element = document.getElementById('editing-response');
-    if (element) {
-      element.remove();
-    }
-  }, 3000); </script>";
-        }
-        
-        session_start();
-        include 'db_connect.php';
-        $error = "";
-        
-        $product = $_GET["product"];
-
-        $sql = "SELECT * FROM Products WHERE ProductID = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $product);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows == 1) {
-            $row = $result->fetch_assoc();
-            $name = $row["Name"];
-            $desc = $row["Description"];
-            $price = $row["Price"];
-            $category = $row["Category"];
-            
-            echo "
-                    <section class='form-section' id='edit-product'>
-            <form method='POST' action='edit_product.php' class='form'>
-                <input type='hidden' name='id' value='$product'/>
+                <section class='form-section' id='create-product'>
+            <form method='POST' action='create_product.php' class='form'>
                 <label for='name'>Name: </label>
-                <input type='text' name = 'name' value='$name'/>
+                <input type='text' name = 'name'/>
                 <label for='desc'>Description: </label>
-                <input type='text' name = 'desc' value='$desc'/>
+                <input type='text' name = 'desc'/>
                 <label for='price'>Price: </label>
-                <input type='number' name = 'price' value='$price' min=0 step='0.01'/>
+                <input type='number' name = 'price' min=0 step='0.01'/>
                 <label for='desc'>Category: </label>
-                <input type='text' name = 'category' value='$category'/>
-                <button type='submit' name='edit_product'>Edit</button>
-            </form>
-            </section>";
-        }
-        else{
-            echo "ERROR: INVALID PRODUCT ID: ".$product;
-        }
-        $stmt->close();
-        $conn->close();
-        
-        
-        exit();
-        
-?>
+                <input type='text' name = 'category'/>
+                <button type='submit' name='create_product'>Create</button>
 
     </div>
 </main>
