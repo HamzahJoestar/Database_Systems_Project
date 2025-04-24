@@ -2,30 +2,37 @@
 session_start();
 include 'db_connect.php';
 
+$success = "";
 $error = "";
 
-// Handle admin login in this page
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['admin_login'])) {
+// Handle form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_admin'])) {
     $email = trim($_POST["email"]);
     $password = trim($_POST["password"]);
 
-    $sql = "SELECT * FROM Admin WHERE Email = ? AND Password = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $email, $password);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    // Check if admin already exists
+    $check = $conn->prepare("SELECT * FROM Admin WHERE Email = ?");
+    $check->bind_param("s", $email);
+    $check->execute();
+    $result = $check->get_result();
 
-    if ($result->num_rows == 1) {
-        $admin = $result->fetch_assoc();
-        $_SESSION["admin_id"] = $admin["AdminID"];
-        $_SESSION["admin_email"] = $admin["Email"];
-        header("Location: admin_dashboard.php");
-        exit();
+    if ($result->num_rows > 0) {
+        $error = "An admin with this email already exists.";
     } else {
-        $error = "Invalid email or password.";
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt = $conn->prepare("INSERT INTO Admin (Email, Password) VALUES (?, ?)");
+        $stmt->bind_param("ss", $email, $hashed_password);
+
+        if ($stmt->execute()) {
+            $success = "Admin registered successfully!";
+        } else {
+            $error = "Registration failed: " . $conn->error;
+        }
+        $stmt->close();
     }
 
-    $stmt->close();
+    $check->close();
     $conn->close();
 }
 ?>
@@ -34,10 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['admin_login'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Marigold Memories - Home</title>
+    <title>Register Admin - Marigold Memories</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .login-container {
+        .register-container {
             max-width: 400px;
             margin: 40px auto;
             background: white;
@@ -45,32 +52,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['admin_login'])) {
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0,0,0,0.1);
         }
-        .login-container h2 {
+
+        .register-container h2 {
             text-align: center;
-            color: #ffa500;
+            color: #EAA221;
             margin-bottom: 20px;
         }
-        .login-container input {
+
+        .register-container input {
             width: 100%;
             margin-bottom: 15px;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        .login-container button {
+
+        .register-container button {
             width: 100%;
             padding: 10px;
-            background-color: #ffa500;
+            background-color: #EAA221;
             color: white;
             border: none;
             border-radius: 5px;
             font-weight: bold;
+            cursor: pointer;
         }
-        .login-container .error {
-            color: red;
+
+        .message {
             text-align: center;
-            margin-bottom: 10px;
+            font-weight: bold;
+            margin-bottom: 15px;
         }
+
+        .success { color: green; }
+        .error { color: red; }
     </style>
 </head>
 <body>
@@ -81,56 +96,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['admin_login'])) {
             <h1>🌼 Marigold Memories</h1>
             <p>Your one-stop shop for flower-themed joy!</p>
         </div>
-
-        <div class="nav-links">
-            <a href="index.php"><button>Home</button></a>
-            <a href="shop.php"><button>Shop</button></a>
-            <a href="cart.php"><button>Cart</button></a>
-
-            <!-- Customer dropdown -->
-            <div class="dropdown">
-                <button class="dropbtn">Customer</button>
-                <div class="dropdown-content">
-                    <a href="login.php">Sign In</a>
-                    <a href="register.php">Sign Up</a>
-                </div>
-            </div>
-
-            <!-- Admin dropdown -->
-            <div class="dropdown">
-                <button class="dropbtn">Admin</button>
-                <div class="dropdown-content">
-                    <a href="index.php#admin-login">Sign In</a>
-                </div>
-            </div>
-        </div>
     </div>
 </header>
 
 <main class="home-page">
-    <div class="content" id="admin-login">
-        <div class="login-container">
-            <h2>Admin Login</h2>
-            <?php if (!empty($error)) echo "<div class='error'>$error</div>"; ?>
-            <form method="POST" action="index.php#admin-login">
-                <input type="email" name="email" placeholder="Admin Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit" name="admin_login">Login</button>
-            </form>
-        </div>
+    <div class="register-container">
+        <h2>Register New Admin</h2>
+        <?php if ($success) echo "<div class='message success'>$success</div>"; ?>
+        <?php if ($error) echo "<div class='message error'>$error</div>"; ?>
+
+        <form method="POST" action="admindash.html">
+            <input type="email" name="email" placeholder="Admin Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" name="register_admin">Register Admin</button>
+        </form>
     </div>
 </main>
 
 <footer>
     <div class="footer-content">
-        <div class="footer-title">Meet the Team</div>
-        <ul class="teammates-list">
-            <li>Ula Dasouqi</li>
-            <li>Hamzah Muhammad</li>
-            <li>Kylie Maddaluna</li>
-            <li>Amnah Javed</li>
-            <li>Daniel Shemesh</li>
-        </ul>
+        <p style="text-align:center;">Only use this page for secure admin setup.</p>
     </div>
 </footer>
 
