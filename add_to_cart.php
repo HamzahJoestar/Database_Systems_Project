@@ -20,7 +20,7 @@ $error = "";
         $row = $result->fetch_assoc();
         $name = $row["Name"];
         
-        $cart[$product] = isset(cart[$product])?cart[$product]+$quantity:$quantity;
+        $cart[$product] = isset($cart[$product])?$cart[$product]+$quantity:$quantity;
         
         $_SESSION["cart"] = $cart;
         $success = "Added ".$quantity." of ".$name." to your cart!"; 

@@ -1,3 +1,19 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_email'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Display the login success message if it exists
+if (isset($_SESSION['login_success'])) {
+    echo "<p>" . $_SESSION['login_success'] . "</p>";
+
+    // Unset the message after displaying it, so it doesn't show again on page refresh
+    unset($_SESSION['login_success']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +23,7 @@
 </head>
 <body>
 
+<!-- Include the header here -->
 <header>
     <div class="container header-content">
         <div class="title-section">
@@ -20,13 +37,19 @@
             <a href="cart.php"><button>Cart</button></a>
 
             <!-- Customer dropdown (Sign In + Sign Up) -->
-            <div class="dropdown">
-                <button class="dropbtn">Customer</button>
-                <div class="dropdown-content">
-                    <a href="login.php">Sign In</a>
-                    <a href="register.php">Sign Up</a>
+            <?php if (!isset($_SESSION['user_email'])): ?>
+                <div class="dropdown">
+                    <button class="dropbtn">Customer</button>
+                    <div class="dropdown-content">
+                        <a href="login.php">Sign In</a>
+                        <a href="register.php">Sign Up</a>
+                    </div>
                 </div>
-            </div>
+            <?php else: ?>
+                <!-- Display Welcome Message and Logout option -->
+                <p>Welcome, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</p>
+                <a href="logout.php"><button>Logout</button></a>
+            <?php endif; ?>
 
             <!-- Admin dropdown (Sign In only) -->
             <div class="dropdown">
@@ -38,6 +61,7 @@
         </div>
     </div>
 </header>
+
 
 <main class="home-page">
     <div class="content">
@@ -57,6 +81,9 @@
             <li>Amnah Javed</li>
             <li>Daniel Shemesh</li>
         </ul>
+ <p style="margin-top: 20px;">
+            <a href="about.php" style="color: white; text-decoration: underline;">About Us</a>
+        </p>
     </div>
 </footer>
 

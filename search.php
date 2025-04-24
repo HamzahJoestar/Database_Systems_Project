@@ -2,7 +2,7 @@
 session_start();
 
 // Connect to your actual database
-$conn = new mysqli("localhost", "maddalk1", "Magicman88!!", "maddalk1_marigold");
+$conn = new mysqli("localhost", "root", "", "muhammh3_marigold");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['product_id'])){
     $productID = intval($_POST['product_id']);
     if (isset($_SESSION['cart'][$productID])){
-        $_SESSION['cart'][productID]++;
+        $_SESSION['cart'][$productID]++;
     }else{
         $_SESSION['cart'][$productID] = 1;
     }

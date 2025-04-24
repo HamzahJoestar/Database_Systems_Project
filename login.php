@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,30 +10,7 @@ session_start();
 </head>
 <body>
 
-    <!-- Header Section -->
-    <header>
-        <div class="container header-content">
-            <div class="title-section">
-                <h1>🌼 Marigold Memories</h1>
-                <p>What would you like to buy?</p>
-            </div>
 
-            <nav class="nav-links">
-                <button onclick="location.href='shop.php'">Shop</button>
-                <button onclick="location.href='shop.php#new'">New Arrivals</button>
-                <button onclick="location.href='contact-us.php'">Contact Us</button>
-                <button onclick="location.href='about-us.php'">About</button>
-
-                <div class="dropdown">
-                    <button class="dropbtn">Account ▾</button>
-                    <div class="dropdown-content">
-                        <a href="login.php">Sign In</a>
-                        <a href="register.php">Sign Up</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
     
     <!-- Login Section -->
     <div class="login-page" id="login-page">
