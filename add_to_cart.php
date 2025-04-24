@@ -17,13 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["product"])) {
 
     if ($row = $result->fetch_assoc()) {
         $name = $row["Name"];
-<<<<<<< HEAD
-        
-        $cart[$product] = isset($cart[$product])?$cart[$product]+$quantity:$quantity;
-        
-        $_SESSION["cart"] = $cart;
-        $success = "Added ".$quantity." of ".$name." to your cart!"; 
-=======
         if (!isset($_SESSION["cart"])) {
             $_SESSION["cart"] = [];
         }
@@ -34,7 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["product"])) {
     } else {
         $error = "Product not found.";
     }
->>>>>>> fe82eea124fc912ff1b78ed6d4f8e45eab5efce7
 }
 
 $cart = $_SESSION["cart"] ?? [];

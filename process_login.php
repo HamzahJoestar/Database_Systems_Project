@@ -36,11 +36,9 @@ if (isset($_POST['email'], $_POST['password'])) {
             $_SESSION['user_id'] = $user['UserID'];
             $_SESSION['user_email'] = $email;
             $_SESSION['user_name'] = $user['FirstName'];
-
-            // Set a session variable for the success message
-            $_SESSION['login_success'] = "Welcome back, " . htmlspecialchars($email) . "!";
-
+            
             // Redirect to index.php
+            $_SESSION['login_success'] = "You are now logged in " . htmlspecialchars($user['FirstName']) . "!";
             header("Location: index.php");
             exit;
         } else {

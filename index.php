@@ -4,14 +4,6 @@ if (!isset($_SESSION['user_email'])) {
     header("Location: login.php");
     exit();
 }
-
-// Display the login success message if it exists
-if (isset($_SESSION['login_success'])) {
-    echo "<p>" . $_SESSION['login_success'] . "</p>";
-
-    // Unset the message after displaying it, so it doesn't show again on page refresh
-    unset($_SESSION['login_success']);
-}
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +21,12 @@ if (isset($_SESSION['login_success'])) {
         <div class="title-section">
             <h1>🌼 Marigold Memories</h1>
             <p>Your one-stop shop for flower-themed joy!</p>
+            <?php
+            if (isset($_SESSION['login_success'])) {
+                echo "<p style='color: green; font-weight: bold;'>" . $_SESSION['login_success'] . "</p>";
+                unset($_SESSION['login_success']);
+            }
+            ?>
         </div>
 
         <div class="nav-links">
@@ -46,8 +44,7 @@ if (isset($_SESSION['login_success'])) {
                     </div>
                 </div>
             <?php else: ?>
-                <!-- Display Welcome Message and Logout option -->
-                <p>Welcome, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</p>
+                <!--Logout option -->
                 <a href="logout.php"><button>Logout</button></a>
             <?php endif; ?>
 
