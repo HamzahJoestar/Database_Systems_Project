@@ -14,7 +14,11 @@ $success = "";
 $servername = "localhost";
 $username = "root";
 $password = "";
+<<<<<<< HEAD
 $dbname = "muhammh3_marigold";
+=======
+$dbname = "marigold";
+>>>>>>> fe82eea124fc912ff1b78ed6d4f8e45eab5efce7
 
 // Connect to database
 $conn = new mysqli($servername, $username, $password, $dbname);

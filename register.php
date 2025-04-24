@@ -105,4 +105,8 @@
 <footer>
     <div class="footer-content">
         <div class="footer-title">Meet the Team</div>
+<<<<<<< HEAD
         <
+=======
+        <
+>>>>>>> fe82eea124fc912ff1b78ed6d4f8e45eab5efce7
