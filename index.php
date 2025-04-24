@@ -31,8 +31,11 @@ if (!isset($_SESSION['user_email'])) {
 
         <div class="nav-links">
             <a href="index.php"><button>Home</button></a>
-            <a href="shop.php"><button>Shop</button></a>
+            <a href="shop_update.php"><button>Shop</button></a>
             <a href="cart.php"><button>Cart</button></a>
+            <a href="about.php"><button>About Us</button></a>
+            <a href="contactus.html"><button>Contact Us</button></a>
+
 
             <!-- Customer dropdown (Sign In + Sign Up) -->
             <?php if (!isset($_SESSION['user_email'])): ?>

@@ -101,12 +101,15 @@
     </div>
 </main>
 
-<!-- Footer -->
 <footer>
     <div class="footer-content">
         <div class="footer-title">Meet the Team</div>
-<<<<<<< HEAD
-        <
-=======
-        <
->>>>>>> fe82eea124fc912ff1b78ed6d4f8e45eab5efce7
+        <ul class="teammates-list">
+            <li>Ula Dasouqi</li>
+            <li>Hamzah Muhammad</li>
+            <li>Kylie Maddaluna</li>
+            <li>Amnah Javed</li>
+            <li>Daniel Shemesh</li>
+        </ul>
+    </div>
+</footer>
