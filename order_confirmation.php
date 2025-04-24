@@ -89,10 +89,6 @@ if ($orderID > 0) {
 
 <!-- FOOTER -->
 <footer>
-    <div class="footer-content">
-        <div class="footer-title">KylieTech</div>
-        <p>&copy; 2025 KylieTech. All rights reserved.</p>
-    </div>
 </footer>
 
 </body>
