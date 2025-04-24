@@ -2,7 +2,7 @@
 session_start();
 
 // Connect to your actual database
-$conn = new mysqli("localhost", "maddalk1", "Magicman88!!", "maddalk1_marigold");
+$conn = new mysqli("localhost", "username", "password", "database");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
