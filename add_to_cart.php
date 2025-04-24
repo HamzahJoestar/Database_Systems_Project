@@ -1,61 +1,111 @@
 <?php
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include 'db_connect.php';
-$success = "";
 session_start();
-$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+include 'db_connect.php';
+
+$success = "";
 $error = "";
-        $product = $_POST["product"];
-        $quantity = 1;//isset($_POST["quantity"])v?$_POST["quantity"] : 1;
 
-        // get name of product
-        $sql = "SELECT * FROM Products WHERE ProductID = ?";
-        $stmt = $conn->prepare($sql);
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["product"])) {
+    $product = $_POST["product"];
+    $quantity = 1;
 
-        $stmt->bind_param("i",$product);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        
-        $row = $result->fetch_assoc();
+    $sql = "SELECT * FROM Products WHERE ProductID = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $product);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($row = $result->fetch_assoc()) {
         $name = $row["Name"];
-        
-        $cart[$product] = isset(cart[$product])?cart[$product]+$quantity:$quantity;
-        
-        $_SESSION["cart"] = $cart;
-        $success = "Added ".$quantity." of ".$name." to your cart!"; 
+        if (!isset($_SESSION["cart"])) {
+            $_SESSION["cart"] = [];
+        }
+
+        $_SESSION["cart"][$product] = ($_SESSION["cart"][$product] ?? 0) + $quantity;
+
+        $success = "Added $quantity of <strong>$name</strong> to your cart!";
+    } else {
+        $error = "Product not found.";
+    }
 }
+
+$cart = $_SESSION["cart"] ?? [];
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Marigold Memories - Shop</title>
+    <title>Your Cart - Marigold Memories</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .form-container {
-            max-width: 500px;
+        .cart-box {
+            max-width: 900px;
             margin: 40px auto;
-            padding: 20px;
-            background: white;
+            background: #fff;
+            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        .form-container h2 {
+
+        .cart-box h2 {
             text-align: center;
-            color: #ffa500;
+            font-size: 2rem;
+            margin-bottom: 25px;
         }
-        .form-container input {
-            width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc;
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
         }
-        .form-container button {
-            width: 100%; padding: 10px; background: #ffa500; color: white; border: none; border-radius: 5px;
-            font-weight: bold; cursor: pointer;
+
+        th {
+            background-color: #F4A300;
+            color: white;
+            padding: 12px;
+            font-size: 1rem;
         }
-        .message { text-align: center; font-weight: bold; margin: 10px 0; }
-        .error { color: red; }
+
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        tfoot td {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .btn-group {
+            text-align: center;
+        }
+
+        .btn-group a button {
+            padding: 12px 24px;
+            margin: 0 10px;
+            background-color: #F4A300;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-group a button:hover {
+            background-color: #e39300;
+        }
+
+        .message {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
         .success { color: green; }
+        .error { color: red; }
     </style>
 </head>
 <body>
@@ -91,8 +141,8 @@ $error = "";
 </header>
 
 <main class="home-page">
-    <div class="form-container">
-        <h2>Account Registration</h2>
+    <div class="cart-box">
+        <h2>🛒 Your Shopping Cart</h2>
 
         <?php if ($error): ?>
             <div class="message error"><?= $error ?></div>
@@ -100,7 +150,51 @@ $error = "";
             <div class="message success"><?= $success ?></div>
         <?php endif; ?>
 
-        <a href="shop.php"><button>Return to Shop</button></a>
+        <?php if (empty($cart)): ?>
+            <p class="message">Your cart is currently empty.</p>
+        <?php else: ?>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $total = 0;
+                    foreach ($cart as $productID => $qty) {
+                        $query = $conn->prepare("SELECT Name, Price FROM Products WHERE ProductID = ?");
+                        $query->bind_param("i", $productID);
+                        $query->execute();
+                        $result = $query->get_result();
+                        $product = $result->fetch_assoc();
+                        $subtotal = $product["Price"] * $qty;
+                        $total += $subtotal;
+                        echo "<tr>
+                                <td>{$product['Name']}</td>
+                                <td>$" . number_format($product["Price"], 2) . "</td>
+                                <td>$qty</td>
+                                <td>$" . number_format($subtotal, 2) . "</td>
+                              </tr>";
+                    }
+                    ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Total</td>
+                        <td><strong>$<?= number_format($total, 2) ?></strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div class="btn-group">
+                <a href="shop.php"><button>Continue Shopping</button></a>
+                <a href="checkout.php"><button>Proceed to Checkout</button></a>
+            </div>
+        <?php endif; ?>
     </div>
 </main>
 
