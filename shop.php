@@ -18,7 +18,7 @@
 
         <div class="nav-links">
             <a href="index.php"><button>Home</button></a>
-            <a href="shop.php"><button>Shop</button></a>
+            <a href="shop_update.php"><button>Shop</button></a>
             <a href="cart.php"><button>Cart</button></a>
 
             <!-- Customer dropdown (Sign In + Sign Up) -->

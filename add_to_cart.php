@@ -119,7 +119,7 @@ $cart = $_SESSION["cart"] ?? [];
 
         <div class="nav-links">
             <a href="index.php"><button>Home</button></a>
-            <a href="shop.php"><button>Shop</button></a>
+            <a href="shop_update.php"><button>Shop</button></a>
             <a href="cart.php"><button>Cart</button></a>
 
             <div class="dropdown">
@@ -191,7 +191,7 @@ $cart = $_SESSION["cart"] ?? [];
             </table>
 
             <div class="btn-group">
-                <a href="shop.php"><button>Continue Shopping</button></a>
+                <a href="shop_update.php"><button>Continue Shopping</button></a>
                 <a href="checkout.php"><button>Proceed to Checkout</button></a>
             </div>
         <?php endif; ?>

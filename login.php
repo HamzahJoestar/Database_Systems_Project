@@ -10,7 +10,34 @@
 </head>
 <body>
 
+<header>
+    <div class="container header-content">
+        <div class="title-section">
+            <h1>🌼 Marigold Memories</h1>
+            <p>Your one-stop shop for flower-themed joy!</p>
+        </div>
 
+        <div class="nav-links">
+
+            <!-- Customer dropdown (Sign In + Sign Up) -->
+            <div class="dropdown">
+                <button class="dropbtn">Customer</button>
+                <div class="dropdown-content">
+                    <a href="login.php">Sign In</a>
+                    <a href="#register">Sign Up</a>
+                </div>
+            </div>
+
+            <!-- Admin dropdown (Sign In only) -->
+            <div class="dropdown">
+                <button class="dropbtn">Admin</button>
+                <div class="dropdown-content">
+                    <a href="admin_login.php">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
     
     <!-- Login Section -->
     <div class="login-page" id="login-page">

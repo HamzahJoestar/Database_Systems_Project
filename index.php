@@ -35,6 +35,8 @@ if (!isset($_SESSION['user_email'])) {
             <a href="cart.php"><button>Cart</button></a>
             <a href="about.php"><button>About Us</button></a>
             <a href="contactus.html"><button>Contact Us</button></a>
+            <a href="account.php"><button>Account</button></a>
+
 
 
             <!-- Customer dropdown (Sign In + Sign Up) -->

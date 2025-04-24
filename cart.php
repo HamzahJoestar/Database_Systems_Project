@@ -32,7 +32,7 @@ $total = 0;
 
         <div class="nav-links">
             <a href="index.php"><button>Home</button></a>
-            <a href="shop.php"><button>Shop</button></a>
+            <a href="shop_update.php"><button>Shop</button></a>
             <a href="cart.php"><button>Cart</button></a>
 
             <div class="dropdown">
@@ -60,7 +60,7 @@ $total = 0;
         <?php if (empty($cart)) : ?>
             <p style="text-align:center;">Your cart is empty.</p>
             <div class="center">
-                <a href="shop.php" class="btn">Continue Shopping</a>
+                <a href="shop_update.php" class="btn">Continue Shopping</a>
             </div>
         <?php else : ?>
             <table>
@@ -98,7 +98,7 @@ $total = 0;
             </table>
 
             <div class="center">
-                <a href="shop.php" class="btn">Continue Shopping</a>
+                <a href="shop_update.php" class="btn">Continue Shopping</a>
                 <a href="checkout.php" class="btn">Proceed to Checkout</a>
             </div>
         <?php endif; ?>

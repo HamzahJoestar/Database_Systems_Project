@@ -100,7 +100,7 @@ $result = mysqli_query($conn, $sql);
 
         <div class="nav-links">
             <a href="index.php"><button>Home</button></a>
-            <a href="shop.php"><button>Shop</button></a>
+            <a href="shop_update.php"><button>Shop</button></a>
             <a href="cart.php"><button>Cart</button></a>
 
             <div class="dropdown">
@@ -123,7 +123,7 @@ $result = mysqli_query($conn, $sql);
 
 <main class="shop-container">
     <div class="search-bar-wrapper">
-        <form class="form" method="POST" action="shop.php">
+        <form class="form" method="POST" action="shop_update.php">
             <input type="text" name="query" placeholder="Search for marigold gifts..." value="<?= htmlspecialchars($query) ?>" required>
             <button type="submit">Search</button>
         </form>
