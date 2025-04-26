@@ -24,12 +24,6 @@ $user_email = $_SESSION['user_email'];
         <div class="title-section">
             <h1>🌼 Marigold Memories</h1>
             <p>Your one-stop shop for flower-themed joy!</p>
-            <?php
-            if (isset($_SESSION['login_success'])) {
-                echo "<p style='color: green; font-weight: bold;'>" . $_SESSION['login_success'] . "</p>";
-                unset($_SESSION['login_success']);
-            }
-            ?>
         </div>
 
         <div class="nav-links">
@@ -40,9 +34,6 @@ $user_email = $_SESSION['user_email'];
             <a href="contactus.html"><button>Contact Us</button></a>
             <a href="account.php"><button>Account</button></a>
             <a href="logout.php"><button>Logout</button></a>
-
-
-
         </div>
     </div>
 </header>
@@ -56,6 +47,7 @@ $user_email = $_SESSION['user_email'];
         <p><strong>Name:</strong> <?= htmlspecialchars($user_name) ?></p>
 
         <a href="update_password.php" class="btn">Change Password</a>
+        <a href="delete_account.php" class="btn">Delete Account</a>
     </section>
 </main>
 

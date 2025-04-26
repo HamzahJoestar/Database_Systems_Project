@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (isset($_SESSION['password_updated'])) {
+    echo "<p style='color: green;'>" . $_SESSION['password_updated'] . "</p>";
+    unset($_SESSION['password_updated']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
