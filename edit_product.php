@@ -137,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <header>
 	<div class="container header-content">
     	<div class="title-section">
-        	<h1>ðŸŒ¼ Marigold Memories</h1>
+        	<h1>🌼 Marigold Memories</h1>
         	<p>Your one-stop shop for flower-themed joy!</p>
     	</div>
 
