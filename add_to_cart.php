@@ -142,7 +142,7 @@ $cart = $_SESSION["cart"] ?? [];
 
 <main class="home-page">
     <div class="cart-box">
-        <h2>ðŸ›’ Your Shopping Cart</h2>
+        <h2>🌼 Your Shopping Cart</h2>
 
         <?php if ($error): ?>
             <div class="message error"><?= $error ?></div>
