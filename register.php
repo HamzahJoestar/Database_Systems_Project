@@ -46,16 +46,12 @@
         </div>
 
         <div class="nav-links">
-            <a href="index.php"><button>Home</button></a>
-            <a href="shop.php"><button>Shop</button></a>
-            <a href="cart.php"><button>Cart</button></a>
-
             <!-- Customer dropdown (Sign In + Sign Up) -->
             <div class="dropdown">
                 <button class="dropbtn">Customer</button>
                 <div class="dropdown-content">
                     <a href="login.php">Sign In</a>
-                    <a href="#register">Sign Up</a>
+                    <a href="register.php">Sign Up</a>
                 </div>
             </div>
 
@@ -70,13 +66,13 @@
     </div>
 </header>
 
-<!-- ✅ Main Content Section -->
+<!-- Ã¢Å“â€¦ Main Content Section -->
 <main class="home-page">
     <div class="content">
         <h2>Welcome to Marigold Memories!</h2>
         <p>Explore our vibrant collection of marigold-themed products for families, teachers, and event planners.</p>
 
-        <!-- ✅ Registration Form -->
+        <!-- Ã¢Å“â€¦ Registration Form -->
         <section class="form-section" id="register">
             <h2>Create Your Account</h2>
             <form action="process_register.php" method="POST" class="form">

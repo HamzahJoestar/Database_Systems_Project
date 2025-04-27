@@ -5,31 +5,22 @@ include 'db_connect.php';
 $success = "";
 $error = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["product"])) {
-    $product = $_POST["product"];
-    $quantity = 1;
-
-    $sql = "SELECT * FROM Products WHERE ProductID = ?";
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"])) {
+    $product = $_POST["id"];
+    
+    $sql = "DELETE FROM Products WHERE ProductID = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $product);
     $stmt->execute();
-    $result = $stmt->get_result();
+ 
 
-    if ($row = $result->fetch_assoc()) {
-        $name = $row["Name"];
-        if (!isset($_SESSION["cart"])) {
-            $_SESSION["cart"] = [];
-        }
-
-        $_SESSION["cart"][$product] = ($_SESSION["cart"][$product] ?? 0) + $quantity;
-
-        $success = "Added $quantity of <strong>$name</strong> to your cart!";
+    if ($stmt->affected_rows>0) {
+        $success = "Producted deleted!";
     } else {
         $error = "Product not found.";
     }
 }
 
-$cart = $_SESSION["cart"] ?? [];
 ?>
 
 <!DOCTYPE html>
@@ -142,58 +133,11 @@ $cart = $_SESSION["cart"] ?? [];
 
 <main class="home-page">
     <div class="cart-box">
-        <h2>ðŸ›’ Your Shopping Cart</h2>
 
         <?php if ($error): ?>
             <div class="message error"><?= $error ?></div>
         <?php elseif ($success): ?>
             <div class="message success"><?= $success ?></div>
-        <?php endif; ?>
-
-        <?php if (empty($cart)): ?>
-            <p class="message">Your cart is currently empty.</p>
-        <?php else: ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $total = 0;
-                    foreach ($cart as $productID => $qty) {
-                        $query = $conn->prepare("SELECT Name, Price FROM Products WHERE ProductID = ?");
-                        $query->bind_param("i", $productID);
-                        $query->execute();
-                        $result = $query->get_result();
-                        $product = $result->fetch_assoc();
-                        $subtotal = $product["Price"] * $qty;
-                        $total += $subtotal;
-                        echo "<tr>
-                                <td>{$product['Name']}</td>
-                                <td>$" . number_format($product["Price"], 2) . "</td>
-                                <td>$qty</td>
-                                <td>$" . number_format($subtotal, 2) . "</td>
-                              </tr>";
-                    }
-                    ?>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3">Total</td>
-                        <td><strong>$<?= number_format($total, 2) ?></strong></td>
-                    </tr>
-                </tfoot>
-            </table>
-
-            <div class="btn-group">
-                <a href="shop_update.php"><button>Continue Shopping</button></a>
-                <a href="checkout.php"><button>Proceed to Checkout</button></a>
-            </div>
         <?php endif; ?>
     </div>
 </main>

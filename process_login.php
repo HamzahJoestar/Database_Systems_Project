@@ -1,14 +1,18 @@
 <?php
 session_start();
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+
+include 'db_connect.php';
+if (isset($_POST["remove"])) {
+    $productID = $_POST["remove"];
+    unset($_SESSION["cart"][$productID]);
+}
 
 $host = "localhost";
 $user = "root";
 $password = "";
 $dbname = "muhammh3_marigold";
 
-$conn = new mysqli($host, $user, $password, $dbname);
+$conn = new mysqli("localhost", "root", "", "muhammh3_marigold");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }

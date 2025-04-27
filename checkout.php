@@ -1,10 +1,14 @@
 <?php
 session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
 include 'db_connect.php';
 
 $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 $total = 0;
-$_SESSION["user_id"] = 1;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     
@@ -162,8 +166,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </table>
             <section class='form-section' id='checkout'>
             <form method='POST' action='checkout.php' class='form'>
-                <label for='paymentmethod'>Payment Method: </label>
-                <input type='text' name = 'paymentmethod'/>
+                <label for="paymentmethod">Payment Method: </label>
+                <select id="paymentmethod" name="paymentmethod">
+                <option value="paypal">Paypal</option>
+                <option value="creditcard">Credit Card</option>
+                </select>
                 <button type='submit' name='checkout'>Checkout</button>
         <?php endif; ?>
     </div>

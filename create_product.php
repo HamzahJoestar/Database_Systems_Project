@@ -1,10 +1,15 @@
 <?php
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: admin_login.php");
+    exit;
+}
+include 'db_connect.php';
 
 
 // Handle creating
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    session_start();
-    include 'db_connect.php';
 
 
     
@@ -18,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $desc = trim($_POST["desc"]);
     $category = trim($_POST["category"]);
     $price = trim($_POST["price"]);
-    $admin_id = $_SESSION["admin_id"]?$_SESSION["admin_id"]:1;
+    $_SESSION['admin_id'] = $AdminID;
     
     if (empty($name) || empty($desc) || empty($category) || empty($price) || empty($id)) {
     $success = "Please fill in all fields.";

@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
 include 'db_connect.php';
 
 $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
@@ -55,7 +59,7 @@ $total = 0;
 
 <main class="home-page">
     <div class="content">
-        <h2 style="text-align:center;">🛒 Your Shopping Cart</h2>
+        <h2 style="text-align:center;">ðŸ›’ Your Shopping Cart</h2>
 
         <?php if (empty($cart)) : ?>
             <p style="text-align:center;">Your cart is empty.</p>

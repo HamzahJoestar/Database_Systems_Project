@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+include 'db_connect.php';
+?>
+
 
 
 <!DOCTYPE html>
@@ -71,9 +80,12 @@
                 <input type='hidden' name='product' value='$product'/>
                 <input type='submit' name='add_to_cart'
                 value='Add to Cart'/>
-
-                </form></td>
-                </tr>";
+                
+                </form></td>";
+                if(isset($_SESSION["admin_id"]) || TRUE){
+                    echo "<td><a href='edit_product.php?product=$product'>Edit Product</a></td>";
+                }
+                echo "</tr>";
           
 
         }

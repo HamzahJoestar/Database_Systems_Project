@@ -7,6 +7,7 @@ if (!isset($_SESSION['user_id'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn = new mysqli("localhost", "root", "", "muhammh3_marigold");
+
     if ($conn->connect_error) die("Connection failed.");
 
     $new_pass = trim($_POST['new_password']);

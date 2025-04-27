@@ -1,8 +1,4 @@
 <?php
-// Enable error reporting (for debugging)
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 // Start session
 session_start();
@@ -11,17 +7,13 @@ $error = "";
 $success = "";
 
 // Database connection settings
-$servername = "localhost";
-$username = "root";
-$password = "";
-<<<<<<< HEAD
+$servername = "localhost";  
+$username = "root";        
+$password = "";            
 $dbname = "muhammh3_marigold";
-=======
-$dbname = "marigold";
->>>>>>> fe82eea124fc912ff1b78ed6d4f8e45eab5efce7
 
 // Connect to database
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli("localhost", "root", "", "muhammh3_marigold");
 
 // Check connection
 if ($conn->connect_error) {
@@ -61,7 +53,7 @@ if (empty($firstName) || empty($lastName) || empty($email) || empty($phone) || e
         if ($stmt->execute()) {
             $_SESSION['user_id'] = $stmt->insert_id;
             $_SESSION['user_email'] = $email;
-            $success = "✅ Account created successfully! Welcome, $firstName.";
+            $success = "âœ… Account created successfully! Welcome, $firstName.";
         } else {
             $error = "Error: " . $stmt->error;
         }

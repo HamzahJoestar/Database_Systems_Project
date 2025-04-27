@@ -1,8 +1,14 @@
 <?php
 session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+include 'db_connect.php';
+?>
 
 // Connect to your actual database
-$conn = new mysqli("localhost", "username", "password", "database");
+$conn = new mysqli("localhost", "root", "", "muhammh3_marigold");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }

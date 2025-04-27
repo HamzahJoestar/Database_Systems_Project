@@ -32,7 +32,7 @@ if (isset($_SESSION['password_updated'])) {
                 <button class="dropbtn">Customer</button>
                 <div class="dropdown-content">
                     <a href="login.php">Sign In</a>
-                    <a href="#register">Sign Up</a>
+                    <a href="register.php">Sign Up</a>
                 </div>
             </div>
 
