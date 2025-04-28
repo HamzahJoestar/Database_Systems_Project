@@ -10,9 +10,9 @@ include 'db_connect.php';
 $query = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["query"])) {
 	$query = mysqli_real_escape_string($conn, $_POST["query"]);
-	$sql = "SELECT * FROM Products WHERE Name LIKE '%$query%'";
+	$sql = "SELECT * FROM Products WHERE Name LIKE '%$query%' ORDER BY Category";
 } else {
-	$sql = "SELECT * FROM Products";
+	$sql = "SELECT * FROM Products ORDER BY Category";
 }
 $result = mysqli_query($conn, $sql);
 ?>
@@ -140,6 +140,7 @@ $result = mysqli_query($conn, $sql);
         	while ($product = mysqli_fetch_assoc($result)) {
             	echo '<div class="product-card">';
             	echo '<h3>' . htmlspecialchars($product['Name']) . '</h3>';
+            	echo '<h4> Category: ' . htmlspecialchars($product['Category']) . '</h3>';
             	echo '<p>' . htmlspecialchars($product['Description']) . '</p>';
             	echo '<p><strong>$' . number_format($product['Price'], 2) . '</strong></p>';
             	echo '<form method="POST" action="add_to_cart.php">';
