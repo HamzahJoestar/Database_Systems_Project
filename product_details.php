@@ -55,7 +55,7 @@ if (isset($_GET['id'])) {
 
 <main class="product-details-container">
     <div class="product-image">
-<img src="<?= $product['??'] ?>" alt="<?= $product['Name'] ?>" style="width: 300px; height: 200px;">
+<img src="<?= $product['Image'] ?>" alt="<?= $product['Name'] ?>" style="width: 300px; height: 200px;">
 
     </div>
 
