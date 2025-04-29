@@ -139,7 +139,7 @@ $result = mysqli_query($conn, $sql);
     	if (mysqli_num_rows($result) > 0) {
         	while ($product = mysqli_fetch_assoc($result)) {
             	echo '<div class="product-card">';
-            	echo '<h3>' . htmlspecialchars($product['Name']) . '</h3>';
+            	echo '<h3><a href="product_details.php?id='. $product['ProductID'] . '">'. htmlspecialchars($product['Name']) . '</a></h3>';
             	echo '<h4> Category: ' . htmlspecialchars($product['Category']) . '</h3>';
             	echo '<p>' . htmlspecialchars($product['Description']) . '</p>';
             	echo '<p><strong>$' . number_format($product['Price'], 2) . '</strong></p>';

@@ -46,6 +46,7 @@ $user_email = $_SESSION['user_email'];
     	<p><strong>Email:</strong> <?= htmlspecialchars($user_email) ?></p>
     	<p><strong>Name:</strong> <?= htmlspecialchars($user_name) ?></p>
 
+        <a href="order_history.php" class="btn">View Order History</a>
     	<a href="update_password.php" class="btn">Change Password</a>
     	<a href="delete_account.php" class="btn">Delete Account</a>
 	</section>
